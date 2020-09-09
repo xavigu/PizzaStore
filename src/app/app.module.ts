@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { reducers } from './store';
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -37,7 +38,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
-    StoreModule.forRoot({}, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
