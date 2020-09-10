@@ -26,14 +26,15 @@ import { Topping } from '../../models/topping.model';
   `,
 })
 export class ProductItemComponent implements OnInit {
-  pizza$: Observable<Pizza>;
   visualise: Pizza;
-  toppings: Topping[];
+  pizza$: Observable<Pizza>;
+  toppings$: Observable<Topping[]>;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
     this.pizza$ = this.store.select(fromStore.getSelectedPizza);
+    this.store.dispatch(new fromStore.LoadToppings());
     console.log('pizza selected: ', this.pizza$);
   }
 
