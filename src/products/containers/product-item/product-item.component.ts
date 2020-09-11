@@ -14,7 +14,7 @@ import { Topping } from '../../models/topping.model';
     <div class="product-item">
       <pizza-form
         [pizza]="pizza$ | async"
-        [toppings]="toppings"
+        [toppings]="toppings$ | async"
         (selected)="onSelect($event)"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
@@ -34,6 +34,7 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit() {
     this.pizza$ = this.store.select(fromStore.getSelectedPizza);
+    this.toppings$ = this.store.select(fromStore.getAllToppings);
     this.store.dispatch(new fromStore.LoadToppings());
     console.log('pizza selected: ', this.pizza$);
   }
