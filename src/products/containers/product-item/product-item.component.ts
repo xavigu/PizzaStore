@@ -19,8 +19,7 @@ import { tap } from 'rxjs/operators';
         (selected)="onSelect($event)"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
-        (remove)="onRemove($event)"
-      >
+        (remove)="onRemove($event)">
         <pizza-display [pizza]="visualise$ | async"> </pizza-display>
       </pizza-form>
     </div>
@@ -63,6 +62,7 @@ export class ProductItemComponent implements OnInit {
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?');
     if (remove) {
+      this.store.dispatch(new fromStore.RemovePizza(event));
     }
   }
 }
